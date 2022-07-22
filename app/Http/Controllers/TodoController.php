@@ -34,7 +34,6 @@ class TodoController extends Controller
 
             $attributes = $request->only([
                 'title',
-                'description',
                 'color'
             ]);
 
@@ -97,4 +96,8 @@ class TodoController extends Controller
 
         return redirect('/dashboard')->with('success', 'TODO deletado com sucesso');
     }
+
+
+
+    
 }
