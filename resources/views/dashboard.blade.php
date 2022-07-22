@@ -9,7 +9,7 @@
     <div class="min-vh-100 d-flex justify-content-center align-items-center">
         <div class="shadow-lg p-3 bg-dark text-white rounded p-5" style="width: 850px; min-height: 300px;">
             <h1>Tarefas</h1>
-            <small class="text-info">{{ $todos->count() }} ativas</small>
+            <small class="text-info">{{ $ativos->count() }} ativas</small>
             <form action="/todos" method="post" class="mt-3">
                 @csrf
                 <div class="input-group">
@@ -27,7 +27,7 @@
                 @foreach ($todos as $todo)
                     <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white">
                         <div class="d-flex align-items-center">
-                            <span class="badge rounded-pill me-2" style="background: {{ $todo->color ?? '#FFFFFF' }}">&nbsp;</span>
+                            <span class="badge rounded-pill me-2" style="background: {{ $todo->color ?? '#ffffff'}}">&nbsp;</span>
                             @if ($todo->is_complete)
                                 <del>{{ $todo->title }}</del>
                             @else
@@ -43,7 +43,7 @@
                                     <i class="bi bi-check2-square fs-4"></i>
                                 </a>
                             @endif
-                            <form action="/todos/{{ $todo->id }}" method="post" class="ms-2">
+                            <form action="/todos/{{$todo->id}}" method="post" class="ms-2">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" style="all: unset; cursor: pointer;">
