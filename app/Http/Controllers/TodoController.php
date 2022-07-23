@@ -50,52 +50,6 @@ class TodoController extends Controller
 
         return redirect('/dashboard')->with('success', 'TODO criado com sucesso');
     }
-
-    public function edit($id,)
-    {
-        
-        $todo = Todo::where('id', '=', $id)->first();
-        //return $todo;
-        $user = auth()->user();
-        if($todo->user_id == $user->id){
-            return view('edit', compact('todo'));
-        }
-        return response('', 404);
-    }
-
-    public function update($todo,  Request $request)
-    {
-        $user = auth()->user();
-        try {
-            $user = auth()->user();
-
-            $attributes = $request->only([
-                'title',
-                'color'
-            ]);
-
-            $attributes['user_id'] = $user->id;
-
-            
-            $tods = Todo::find($todo);
-            if($tods->user_id == $user->id){
-                $tods->title = $request->title;
-                $tods->color = $request->color;
-                $tods->save();
-            }else{
-                return response('', 403);
-            }
-            
-
-            //$todo = Todo::updated($attributes);
-        } catch (\Throwable $th) {
-            logger()->error($th);
-            return redirect('/todos/create')->with('error', 'Erro ao criar TODO');
-        }
-
-        return redirect('/dashboard')->with('success', 'TODO criado com sucesso');
-
-    }
     /**
      * Complete the specified resource in storage.
      *
@@ -143,5 +97,55 @@ class TodoController extends Controller
         }
 
         return redirect('/dashboard')->with('success', 'TODO deletado com sucesso');
+    }
+
+
+    public function edit($id,)
+    {
+        
+        $todo = Todo::where('id', '=', $id)->first();
+        //return $todo;
+        $user = auth()->user();
+        if($todo->user_id == $user->id){
+            return view('edit', compact('todo'));
+        }
+        return response('', 404);
+    }
+
+    public function update($tod,  Request $request)
+    {
+        //dd($tod);
+        //dd($request->id);
+        $user = auth()->user();
+        try {
+            $user = auth()->user();
+
+            $attributes = $request->only([
+                'title',
+                'color'
+            ]);
+            //dd($request->title);
+
+            $attributes['user_id'] = $user->id;
+            //Todo::UPDATED_AT()
+            
+            $to = Todo::find($tod);
+            if($to->user_id == $user->id){
+                $to->title = $request->title;
+                $to->color = $request->color;
+                $to->save();
+            }else{
+                return response('', 403);
+            }
+            
+
+            //$todo = Todo::updated($attributes);
+        } catch (\Throwable $th) {
+            logger()->error($th);
+            return redirect('/todos/create')->with('error', 'Erro ao criar TODO');
+        }
+
+        return redirect('/dashboard')->with('success', 'TODO criado com sucesso');
+
     }
 }

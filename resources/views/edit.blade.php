@@ -3,6 +3,9 @@
 @section('title', '| editar')
 
 @section('content')
+<a href="{{ route('logout') }}" class="position-absolute top-0 end-0 link-secondary p-3">
+    <i class="bi bi-box-arrow-right fs-3"></i>
+</a>
     <div class="min-vh-100 d-flex justify-content-center align-items-center">
         <div class="shadow-lg p-3 bg-dark text-white rounded p-5" style="width: 850px; min-height: 300px;">
             <h1>Editar tarefas</h1>
