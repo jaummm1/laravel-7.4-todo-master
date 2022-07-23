@@ -8,7 +8,7 @@
 </a>
     <div class="min-vh-100 d-flex justify-content-center align-items-center">
         <div class="shadow-lg p-3 bg-dark text-white rounded p-5" style="width: 850px; min-height: 300px;">
-            <h1>Editar tarefas</h1>
+            <h1>Editar Tarefas</h1>
             <form action="/todos/{{$todo->id}}" method="post" class="mt-3">
                 @csrf
                 @method('put')
